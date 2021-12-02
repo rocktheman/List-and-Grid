@@ -32,8 +32,14 @@ class _MyAppState extends State<MyApp> {
     return ListView.builder(
         itemCount: 20,
         itemBuilder: (BuildContext context, int index) => Card(
-              child: ListTile(title: Text(index.toString())),
-            ));
+            child: ListTile(
+                title: Text(index.toString()),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Detail()),
+                  );
+                })));
   }
 
   Widget _contentGridView() {
@@ -47,8 +53,32 @@ class _MyAppState extends State<MyApp> {
               child: ListTile(
                   title: Text(index.toString()),
                   onTap: () {
-                    print(index.toString());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Detail()),
+                    );
                   }),
             ));
+  }
+}
+
+class Detail extends StatelessWidget {
+  const Detail({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Back"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
   }
 }

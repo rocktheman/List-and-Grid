@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   get itemBuilder => null;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +32,14 @@ class _MyAppState extends State<MyApp> {
 
   Widget _contentList() {
     return ListView.builder(
-        itemCount: 20,
+        itemCount: 6,
         itemBuilder: (BuildContext context, int index) => Card(
             child: ListTile(
                 title: Text(index.toString()),
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Detail()),
+                    MaterialPageRoute(builder: (context) => data(index)),
                   );
                 })));
   }
@@ -49,36 +51,16 @@ class _MyAppState extends State<MyApp> {
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
+        itemCount: 6,
         itemBuilder: (BuildContext context, int index) => Card(
               child: ListTile(
                   title: Text(index.toString()),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Detail()),
+                      MaterialPageRoute(builder: (context) => data(index)),
                     );
                   }),
             ));
-  }
-}
-
-class Detail extends StatelessWidget {
-  const Detail({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Back"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
-    );
   }
 }
